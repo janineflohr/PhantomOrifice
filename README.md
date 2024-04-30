@@ -22,4 +22,4 @@ STL files
 - RV_ManualShapeTracker: MATLAB code used to analyse video data to quantify the shape of the ring vortex throughout the tank, used in Chapter 3.2.1 of the dissertation.
 
 Animations
-- orifice 11-13: video animations of how the mechanism of each adjustable orifice works.
+- orifice 11-13: video animations of how the mechanism of each adjustable orifice works. Created by Alana Matthews with comments by Janine Flohr.

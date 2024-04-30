@@ -16,10 +16,6 @@ Code (all used in Chapter 3.2.1 of the dissertation)
 STL files
 - orifice 1-10: .stl files of the geometrical test orifices, used throughout Chapter 5 of the dissertation.
 - orifice 11-13: .stl files of the adjustable orifice design concepts, explored throughout Chapters 6, 7, 8 of the dissertation respectively.
-- RV_MotorCode: Arduino code used to run the motor to generate ring vortices using the phantom device, used in Chapter 3.2.1 of the dissertation
-- RV_EncoderCode: MATLAB code used to run the encoder while generating ring vortices using the phantom device, used in Chapter 3.2.1 of the dissertation.
-- RV_ManualPositionTracker: MATLAB code used to analyse video data to track the position of the ring vortex throughout the tank, used in Chapter 3.2.1 of the dissertation.
-- RV_ManualShapeTracker: MATLAB code used to analyse video data to quantify the shape of the ring vortex throughout the tank, used in Chapter 3.2.1 of the dissertation.
 
 Animations
 - orifice 11-13: video animations of how the mechanism of each adjustable orifice works. Created by Alana Matthews with comments by Janine Flohr.

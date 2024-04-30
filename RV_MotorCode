@@ -1,0 +1,79 @@
+     
+int pulPin = 9; // Pin 9 ->> Pull +
+int dirPin = 10; // Pin 10 ->> DIR +
+int enblPin = 11; // Pin 11 ->> ENA + Pin 
+int buttonPin = 7;
+// ENA-, Pull- and DIR- linked to the ground for our configuration ( Arduino works just on
+//positive voltages)
+int revolution = 0;
+int buttonState = 0;
+//set up --> Set displacement, Set How many rings you want to produce, Set Speed
+int StepDisplacement =122*2; 
+int TopT = 214; //SetDisp-30
+int HowManyRings=17; // Set how many rings do you want to produce
+ 
+int AccnArray[20]={3000,2500,2500,2500,2000,1700,1400,1300,1100,1000,909,822,769,714,666,625,588,555,550,550};
+int DecnArray[10]={500,555,588,666,769,822,1000,1300,1700,2000};
+
+int SetSpeed =750/2; // (500/2 SetSpeed = 2cm/s, 750/2 SetSpeed=1.33cm/s)
+
+//in microseconds, Minimum for square wave is 200 (sometimes overrun, better working from 250 or more
+//piston diameter =70mm
+void setup() { 
+// put your setup code here, to   run once:
+  pinMode(pulPin, OUTPUT);
+  pinMode(dirPin, OUTPUT);
+  pinMode(enblPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+  digitalWrite(enblPin, LOW);
+  delayMicroseconds(6); // those delays and order of initialization are from the Datasheet of the driver
+  digitalWrite(dirPin, LOW); // High --> piston forward =, LOW--> piston backward
+  delayMicroseconds(6);
+  digitalWrite(pulPin, LOW);
+  delay(1000);
+  digitalWrite(enblPin, HIGH);// initialise and then switch off
+}
+
+void loop() {
+buttonState = digitalRead(buttonPin); // when you press the button the counter of 20sec will start for the generation of the 1st ring
+if (buttonState == HIGH){
+  delay(10); //delay for the button
+  while (revolution < HowManyRings) {
+    digitalWrite(enblPin, HIGH);
+   //delay (27675);// 1 ring each 25 seconds in order not to overheat the motor. 20sec it is ok, but don't go below 20 sec.
+    // the mentione 25 sec have been split in 23sec, then I switch on the motor 2sec before the ring trying to avoid errors.
+   //delay(5500);
+   delay(25000); // delay between rings 
+    digitalWrite(enblPin, LOW);
+    delayMicroseconds(6);
+    digitalWrite(dirPin, LOW); // High --> piston backward =, LOW--> piston forward
+    delayMicroseconds(6);
+    digitalWrite(pulPin, LOW); 
+    delay (2000);
+
+           for (int i = 0; i<=19; i++) {
+       if ((i & 2) == 0) 
+      digitalWrite(pulPin, HIGH);
+      delayMicroseconds (AccnArray[i]);
+      digitalWrite(pulPin, LOW);
+      delayMicroseconds(AccnArray[i]); 
+    }
+        for (int i = 0; i<=TopT; i++) {
+       if ((i & 2) == 0) 
+      digitalWrite(pulPin, HIGH);
+      delayMicroseconds (SetSpeed);
+      digitalWrite(pulPin, LOW);
+      delayMicroseconds(SetSpeed); 
+    }
+    for (int i = 0; i<=9; i++) {
+       if ((i & 2) == 0) 
+      digitalWrite(pulPin, HIGH);
+      delayMicroseconds (DecnArray[i]);
+      digitalWrite(pulPin, LOW);
+      delayMicroseconds(DecnArray[i]);
+    }
+    revolution++;
+    }
+}
+digitalWrite(enblPin,HIGH); 
+}

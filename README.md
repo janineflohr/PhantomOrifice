@@ -5,7 +5,7 @@ A collection of code, CAD files, and videos relating to my dissertation on the d
 Contents:
 
 Misc
-- phantom device 3D model: .pdf file containing a 3D embed of the ring vortex phantom device, which can be manipulated to explore the device.
+- phantom device 3D model: .pdf file containing a 3D embed of the ring vortex phantom device, which can be manipulated to explore the device. To view this, download and open with Adobe Reader, and enable 3D content.
 
 Code (all used in Chapter 3.2.1 of the dissertation)
 - RV_MotorCode: Arduino code used to run the motor to generate ring vortices using the phantom device.
